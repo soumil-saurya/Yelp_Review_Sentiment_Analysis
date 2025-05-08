@@ -35,24 +35,33 @@ This project demonstrates how to handle large-scale semi-structured data, conver
 The 5GB JSON file was split into 10 smaller chunks for faster upload to AWS S3 and parallel processing in Snowflake.
 
 ```python
-input_file = 'yelp_academic_dataset_review.json'
-output_prefix = 'split_file_'
-num_files = 10
+import json
 
-with open(input_file, "r", encoding="utf8") as f:
+input_file = r'C:\Users\soumi\Downloads\Yelp-JSON\Yelp JSON\yelp_dataset\yelp_academic_dataset_review.json' # 5 GB json dataset
+output_prefix = 'split_file_' # prefix for output files
+num_files = 10 # num of files to split into
+
+# count of total lines(objects) in the dataset file
+with open(input_file, "r", encoding = "utf8") as f:
     total_lines = sum(1 for _ in f)
 
-lines_per_file = total_lines // num_files
+lines_per_file = total_lines // num_files # lines per split file
 
-with open(input_file, "r", encoding="utf8") as f:
+print(f"Total lines: {total_lines}, Lines per file: {lines_per_file}")
+
+# now split into multiple smaller files 
+with open(input_file, "r", encoding = "utf8") as f:
     for i in range(num_files):
         output_filename = f"{output_prefix}{i+1}.json"
-        with open(output_filename, "w", encoding="utf8") as out_file:
+
+        with open(output_filename, "w", encoding = "utf8") as out_file:
             for j in range(lines_per_file):
                 line = f.readline()
                 if not line:
                     break
                 out_file.write(line)
+
+print("Success")
 ```
 
 ---
