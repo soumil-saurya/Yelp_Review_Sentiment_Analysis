@@ -94,7 +94,7 @@ with open(input_file, "r", encoding="utf8") as f:
 
 ## 📷 Screenshots
 
-> *(Add dashboard and query result images here once available)*
+![workflow](https://github.com/soumil-saurya/Yelp_Review_Sentiment_Analysis/blob/main/Yelp%20reviews%20sentimental%20analysis%20workflow.png)
 
 ---
 
